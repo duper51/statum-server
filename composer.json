@@ -1,0 +1,15 @@
+{
+  "name": "duper51/statum-server",
+  "description": "Server for Statum, the lightweight",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Ian Otto",
+      "email": "me@duper51.me"
+    }
+  ],
+  "require": {
+    "klein/klein": "v2.1.2"
+  }
+}
