@@ -14,7 +14,7 @@
     "smarty/smarty": "v3.1.31"
   },
   "autoload": {
-    "psr-0": {
+    "psr-4": {
       "Me\\": "src/"
     }
   }
