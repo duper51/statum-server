@@ -1,7 +1,7 @@
 {
   "name": "duper51/statum-server",
   "description": "Server for Statum, the lightweight",
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "license": "proprietary",
   "authors": [
     {
@@ -11,7 +11,8 @@
   ],
   "require": {
     "klein/klein": "v2.1.2",
-    "smarty/smarty": "v3.1.31"
+    "smarty/smarty": "v3.1.31",
+    "propel/propel": "^2.0@dev"
   },
   "autoload": {
     "psr-4": {
