@@ -11,11 +11,16 @@ namespace Me\Controller;
 
 use Klein\Request;
 use Klein\Response;
+use Me\Exceptions\NotAuthedException;
+use Me\Services\AuthService;
 
 class ApiController extends Controller
 {
     protected $prefix = "/api/";
-    protected $routes = ["GET:version" => "show_version"];
+    protected $routes = [
+        "GET:version" => "show_version",
+        "GET:status" => "get_status"
+    ];
     public function add_routes($klein)
     {
         foreach($this->routes as $uri => $function) {
@@ -41,12 +46,20 @@ class ApiController extends Controller
     /**
      * @param $request Request
      * @param $response Response
+     * @return string Response
      */
     public function get_status($request, $response) {
-        if(isset($request->sid)) {
-            return json_encode(['error'=>'not implemented']);
-        } else {
-            $response->code(400);
+        try {
+            return AuthService::authenticate(function ($request, $response) {
+                if (isset($request->sid)) {
+                    return json_encode(['error' => 'not implemented']);
+                } else {
+                    $response->code(400);
+                    return json_encode(['error' => 'missing parameter sid']);
+                }
+            }, [$request, $response]);
+        } catch(NotAuthedException $e) {
+            return json_encode(['error'=>'authentication required']);
         }
     }
 }
