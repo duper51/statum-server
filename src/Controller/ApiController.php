@@ -31,7 +31,7 @@ class ApiController extends Controller
                 $uri = $parts[1];
             }
             $complete = $this->prefix . $uri;
-            echo $complete;
+            echo $complete . "<br/>";
             if($method != null) {
                 $klein->respond($method, $complete, [$this, $function]);
             } else {
