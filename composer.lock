@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3eba3f142ac832c72ad376e93117baef",
     "content-hash": "0822c648b51385d9618099726ac312f6",
     "packages": [
         {
@@ -61,7 +60,7 @@
                 "routing",
                 "sinatra"
             ],
-            "time": "2017-02-01 23:08:58"
+            "time": "2017-02-01T23:08:58+00:00"
         },
         {
             "name": "propel/propel",
@@ -226,7 +225,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-12-14 21:57:25"
+            "time": "2016-12-14T21:57:25+00:00"
         },
         {
             "name": "symfony/config",
