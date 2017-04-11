@@ -51,8 +51,14 @@ class ApiController extends Controller
     public function get_status($request, $response) {
         try {
             return AuthService::authenticate(function ($request, $response) {
-                if (isset($request->sid)) {
-                    return json_encode(['error' => 'not implemented']);
+                if (isset($request->aid)) {
+                    $appliance = AppliancesQuery::create()->limit(1)->findById($request->sid);
+                    if(!empty($appliance)) {
+                        return json_encode(['error'=>null, $request->sid => $appliance[0]->getLastping()]);
+                    } else {
+                        $response->code(404);
+                        return json_encode(['error' => 'appliance not found']);
+                    }
                 } else {
                     $response->code(400);
                     return json_encode(['error' => 'missing parameter sid']);
@@ -61,5 +67,9 @@ class ApiController extends Controller
         } catch(NotAuthedException $e) {
             return json_encode(['error'=>'authentication required']);
         }
+    }
+
+    public function put_appliance($request, $response) {
+        //
     }
 }
