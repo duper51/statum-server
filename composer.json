@@ -11,8 +11,7 @@
   ],
   "require": {
     "klein/klein": "v2.1.2",
-    "smarty/smarty": "v3.1.31",
-    "propel/propel": "^2.0@dev"
+    "smarty/smarty": "v3.1.31"
   },
   "autoload": {
     "psr-4": {
