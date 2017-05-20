@@ -8,6 +8,7 @@
 
 namespace Me\Controller;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 use Klein\Request;
 use Klein\Response;
@@ -52,7 +53,7 @@ class ApiController extends Controller
         try {
             return AuthService::authenticate(function ($request, $response) {
                 if (isset($request->aid)) {
-                    $appliance = AppliancesQuery::create()->limit(1)->findById($request->sid);
+                    $appliance = Capsule::table("appliances");
                     if(!empty($appliance)) {
                         return json_encode(['error'=>null, $request->sid => $appliance[0]->getLastping()]);
                     } else {

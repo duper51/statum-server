@@ -11,9 +11,9 @@ namespace Me\Views;
 
 use Smarty;
 
-class HomePage
+class HomePage extends View
 {
-    public static function execute($smarty) {
-        View::$template = new Smarty();
+    public function execute($smarty) {
+        parent::$engine->display('index.tpl');
     }
 }

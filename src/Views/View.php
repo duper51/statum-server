@@ -9,7 +9,22 @@
 namespace Me\Views;
 
 
+use Smarty;
+
 abstract class View
 {
-    abstract protected function execute($smarty);
+    /**
+     * @var Smarty smarty var
+     */
+    protected static $engine;
+
+    public function __construct()
+    {
+        static::$engine = new Smarty();
+        static::$engine->setTemplateDir(dirname(__DIR__) . "/templates")
+            ->setCompileDir(dirname(__DIR__) . "/templates_c");
+
+    }
+
+    abstract public function execute($smarty);
 }
