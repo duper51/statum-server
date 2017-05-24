@@ -12,7 +12,7 @@ namespace Me\Controller;
 use Klein\Klein;
 use Me\Views\HomePage;
 
-abstract class Controller
+class Controller
 {
     /**
      * @var string The prefix that is added to all routes under the controller
