@@ -30,7 +30,7 @@ class Kernel
 
         $capsule->addConnection([
             'driver'    => 'mysql',
-            'host'      => $this->config['database']['host'],
+            'host'      => $this->config['database']['hostname'],
             'database'  => $this->config['database']['db'],
             'username'  => $this->config['database']['username'],
             'password'  => $this->config['database']['password'],
