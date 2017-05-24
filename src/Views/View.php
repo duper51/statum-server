@@ -21,8 +21,8 @@ abstract class View
     public function __construct()
     {
         static::$engine = new Smarty();
-        static::$engine->setTemplateDir(dirname(__DIR__) . "/templates")
-            ->setCompileDir(dirname(__DIR__) . "/templates_c");
+        static::$engine->setTemplateDir(__DOCROOT__ . "/templates")
+            ->setCompileDir(__DOCROOT__ . "/templates_c");
 
     }
 
