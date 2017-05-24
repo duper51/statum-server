@@ -26,5 +26,5 @@ abstract class View
 
     }
 
-    abstract public function execute($smarty);
+    abstract public function execute($args = null);
 }

@@ -13,7 +13,7 @@ use Smarty;
 
 class HomePage extends View
 {
-    public function execute($smarty) {
+    public function execute($args = null) {
         parent::$engine->display('index.tpl');
     }
 }

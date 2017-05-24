@@ -10,20 +10,43 @@ namespace Me\Controller;
 
 
 use Klein\Klein;
+use Me\Views\HomePage;
 
 abstract class Controller
 {
     /**
      * @var string The prefix that is added to all routes under the controller
      */
-    protected $prefix = "";
+    protected $prefix = "/";
     /**
      * @var array relates uris to controller functions
      */
-    protected $routes = [];
+    protected $routes = [
+        "GET:" => "index"
+    ];
     /**
      * Adds routes from the controller.
      * @param $klein Klein the router interface
      */
-    public abstract function add_routes($klein);
+    public function add_routes($klein) {
+        foreach($this->routes as $uri => $function) {
+            $method = null;
+            if(stristr($uri, ":")) {
+                $parts = preg_split("/:/", $uri, 2);
+                $method = $parts[0];
+                $uri = $parts[1];
+            }
+            $complete = $this->prefix . $uri;
+            if($method != null) {
+                $klein->respond($method, $complete, [$this, $function]);
+            } else {
+                $klein->respond($complete, [$this, $function]);
+            }
+        }
+    }
+
+    public function index() {
+        $page = new HomePage();
+        $page->execute();
+    }
 }

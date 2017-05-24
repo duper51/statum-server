@@ -22,23 +22,6 @@ class ApiController extends Controller
         "GET:version" => "show_version",
         "GET:status" => "get_status"
     ];
-    public function add_routes($klein)
-    {
-        foreach($this->routes as $uri => $function) {
-            $method = null;
-            if(stristr($uri, ":")) {
-                $parts = preg_split("/:/", $uri, 2);
-                $method = $parts[0];
-                $uri = $parts[1];
-            }
-            $complete = $this->prefix . $uri;
-            if($method != null) {
-                $klein->respond($method, $complete, [$this, $function]);
-            } else {
-                $klein->respond($complete, [$this, $function]);
-            }
-        }
-    }
 
     public function show_version() {
         return json_encode(['version'=>'0.0.1']);
