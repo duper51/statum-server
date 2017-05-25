@@ -1,12 +1,14 @@
 {extends file="general.tpl"}
 {block name=title}Statum - Login{/block}
-{block name=custom_link}<link rel="stylesheet" href="/css/footer.css">{/block}
+{block name=custom_link}
+    <link rel="stylesheet" href="/css/footer.css">
+{/block}
 {block name=body}
-<div class="container">
-    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title">Sign In</div>
+    <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
                 </div>
             </div>
 
@@ -43,12 +45,12 @@
                         <!-- Button -->
 
                         <div class="col-sm-12 controls">
-                            <a id="btn-login" href="#" class="btn btn-success">Login </a>
+                            <input id="btn-login" type="submit" class="btn btn-success">Login </input>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
+    <footer class="footer"><div class="container">Powerered by Statum</div></footer>
 {/block}
