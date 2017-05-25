@@ -18,7 +18,8 @@ class LoginController extends Controller
     protected $prefix = "/";
     protected $routes = [
         "GET:login" => "login",
-        "POST:login" => "process_login"
+        "POST:login" => "process_login",
+        "GET:logout" => "process_logout"
     ];
 
     public function process_login($request, $response) {
@@ -43,5 +44,12 @@ class LoginController extends Controller
             $login = new LoginPage();
             $login->execute(['warning' => "Please enter a username and password."]);
         }
+    }
+
+    public function process_logout($request, $response) {
+        unset($_SESSION['login']);
+        setcookie("login_token", null, 0);
+        setcookie("username", null, 0);
+        $response->redirect("/")->send();
     }
 }
