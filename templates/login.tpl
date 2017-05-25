@@ -17,7 +17,7 @@
                     <div id="login-alert" class="alert alert-danger col-sm-12">{$warning}</div>
                 {/if}
 
-                <form id="loginform" class="form-horizontal" role="form">
+                <form id="loginform" class="form-horizontal" role="form" action="/login" method="post">
 
                     <div style="margin-bottom: 25px" class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -45,9 +45,10 @@
                         <!-- Button -->
 
                         <div class="col-sm-12 controls">
-                            <input id="btn-login" type="submit" class="btn btn-success">Login </input>
+                            <input id="btn-login" type="submit" class="btn btn-success" value="Login">
                         </div>
                     </div>
+                    <input type="hidden" name="nonce" value="{$nonce}">
                 </form>
             </div>
         </div>

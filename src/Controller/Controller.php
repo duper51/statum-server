@@ -11,7 +11,6 @@ namespace Me\Controller;
 
 use Klein\Klein;
 use Me\Services\AuthService;
-use Me\Views\HomePage;
 use Me\Views\LoginPage;
 
 class Controller
@@ -19,7 +18,7 @@ class Controller
     /**
      * @var string The prefix that is added to all routes under the controller
      */
-    protected $prefix = "/";
+    protected $prefix = "";
     /**
      * @var array relates uris to controller functions
      */
@@ -30,7 +29,6 @@ class Controller
      * @var array relates uris to protected controller functions.
      */
     protected $protected_routes = [
-        "GET:" => "index"
     ];
 
     protected $not_authed = "login";
@@ -84,17 +82,8 @@ class Controller
         }
     }
 
-    public function index() {
-        $page = new HomePage();
-        $page->execute();
-    }
-
     public function login() {
         $page = new LoginPage();
         $page->execute(['warning' => 'You need to login to view this page!']);
-    }
-
-    public function process_login() {
-
     }
 }
