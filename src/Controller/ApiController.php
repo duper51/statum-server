@@ -57,4 +57,8 @@ class ApiController extends Controller
     public function put_appliance($request, $response) {
         //
     }
+
+    public function generate_pass($request, $response) {
+        return json_encode(["hashed" => password_hash($request->password, PASSWORD_BCRYPT)]);
+    }
 }
