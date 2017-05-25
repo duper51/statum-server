@@ -31,7 +31,7 @@ class LoginController extends Controller
                 $token->save();
                 setcookie("login_token", $token->token, time() + (3600 * 24 * 30));
                 setcookie("username", $request->username, time() + (3600 * 24  * 30));
-                $response->redirect("/");
+                $response->redirect("/")->send();
             } else {
                 $login = new LoginPage();
                 $login->execute(['warning' => "Bad username or password."]);
