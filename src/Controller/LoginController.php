@@ -15,6 +15,7 @@ use Me\Views\LoginPage;
 use Illuminate\Database\Capsule\Manager as Capsule;
 class LoginController extends Controller
 {
+    protected $prefix = "/";
     protected $routes = [
         "GET:login" => "login",
         "POST:login" => "process_login"
