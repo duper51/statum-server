@@ -10,6 +10,7 @@ namespace Me\Controller;
 
 
 use Klein\Klein;
+use Me\Services\AuthService;
 use Me\Views\HomePage;
 
 class Controller
@@ -22,8 +23,16 @@ class Controller
      * @var array relates uris to controller functions
      */
     protected $routes = [
+    ];
+
+    /**
+     * @var array relates uris to protected controller functions.
+     */
+    protected $protected_routes = [
         "GET:" => "index"
     ];
+
+    protected $not_authed = "login";
     /**
      * Adds routes from the controller.
      * @param $klein Klein the router interface
@@ -45,8 +54,41 @@ class Controller
         }
     }
 
+    /**
+     * Adds routes from the controller.
+     * @param $klein Klein the router interface
+     */
+    public function add_protected_routes($klein) {
+        foreach($this->protected_routes as $uri => $function) {
+            $method = null;
+            if(stristr($uri, ":")) {
+                $parts = preg_split("/:/", $uri, 2);
+                $method = $parts[0];
+                $uri = $parts[1];
+            }
+            $complete = $this->prefix . $uri;
+            if(AuthService::is_authed()) {
+                if ($method != null) {
+                    $klein->respond($method, $complete, [$this, $function]);
+                } else {
+                    $klein->respond($complete, [$this, $function]);
+                }
+            } else {
+                if ($method != null) {
+                    $klein->respond($method, $complete, [$this, $this->not_authed]);
+                } else {
+                    $klein->respond($complete, [$this, $this->not_authed]);
+                }
+            }
+        }
+    }
+
     public function index() {
         $page = new HomePage();
         $page->execute();
+    }
+
+    public function login() {
+
     }
 }
