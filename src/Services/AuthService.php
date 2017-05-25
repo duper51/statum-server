@@ -20,6 +20,7 @@ class AuthService
         if(isset($user))
             return true; //break early if we've already executed this function
         if(isset($_SESSION['login'])) {
+            error_log(print_r($_SESSION['login']));
             static::$user = User::where("username", $_SESSION['login']);
             return true;
         }

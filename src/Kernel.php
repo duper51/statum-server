@@ -18,13 +18,6 @@ class Kernel
     public $config;
     protected static $instance;
     public function __construct($klein) {
-        foreach($this->controllers as $controller) {
-            /** @var Controller $obj */
-            $class = "\\Me\\Controller\\" . $controller;
-            $obj = new $class();
-            $obj->add_protected_routes($klein);
-            $obj->add_routes($klein);
-        }
 
         $this->config = parse_ini_file(dirname(__DIR__) . "/config/config.ini", true);
         $capsule = new Capsule;
@@ -43,6 +36,14 @@ class Kernel
         $capsule->setAsGlobal();
 
         $capsule->bootEloquent();
+
+        foreach($this->controllers as $controller) {
+            /** @var Controller $obj */
+            $class = "\\Me\\Controller\\" . $controller;
+            $obj = new $class();
+            $obj->add_protected_routes($klein);
+            $obj->add_routes($klein);
+        }
 
         Kernel::$instance = $this;
     }
