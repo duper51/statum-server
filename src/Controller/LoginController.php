@@ -26,12 +26,14 @@ class LoginController extends Controller
             $val = Capsule::table("users")->where('username', $request->username)->first();
             if(password_verify($request->password, $val->password)) {
                 $_SESSION['login'] = true;
-                $token = new LoginToken();
-                $token->token = NonceService::generate_nonce();
-                $token->username = $request->username;
-                $token->save();
-                setcookie("login_token", $token->token, time() + (3600 * 24 * 30));
-                setcookie("username", $request->username, time() + (3600 * 24  * 30));
+                if($request->remember) {
+                    $token = new LoginToken();
+                    $token->token = NonceService::generate_nonce();
+                    $token->username = $request->username;
+                    $token->save();
+                    setcookie("login_token", $token->token, time() + (3600 * 24 * 30));
+                    setcookie("username", $request->username, time() + (3600 * 24 * 30));
+                }
                 $response->redirect("/")->send();
             } else {
                 $login = new LoginPage();

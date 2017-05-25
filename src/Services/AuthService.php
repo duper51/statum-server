@@ -21,7 +21,12 @@ class AuthService
         if(isset($_COOKIE['login_token']) && isset($_COOKIE['username'])) {
             $collection = Capsule::table("loginTokens")->where("token", $_COOKIE['login_token'])
                 ->where("user", $_COOKIE['username'])->get(1);
-            return $collection->count() > 0;
+            if($collection->count() > 0) {
+                setcookie("login_token", null, 0);
+                setcookie("username", null, 0);
+                return false;
+            }
+            return true;
         }
         return false;
     }
