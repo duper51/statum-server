@@ -25,7 +25,7 @@ class LoginController extends Controller
         if(isset($request->username) && isset($request->password) && isset($request->nonce)) {
             $val = Capsule::table("users")->where('username', $request->username)->first();
             if(password_verify($request->password, $val->password)) {
-                $_SESSION['login'] = true;
+                $_SESSION['login'] = $request->username;
                 if($request->remember) {
                     $token = new LoginToken();
                     $token->token = NonceService::generate_nonce();

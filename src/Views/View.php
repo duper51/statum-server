@@ -9,6 +9,7 @@
 namespace Me\Views;
 
 
+use Me\Services\AuthService;
 use Me\Services\NonceService;
 use Smarty;
 
@@ -25,6 +26,7 @@ abstract class View
         static::$engine->setTemplateDir(__DOCROOT__ . "/templates")
             ->setCompileDir(__DOCROOT__ . "/templates_c");
         static::$engine->assign("nonce", NonceService::initialize_nonce());
+        static::$engine->assign("user", AuthService::get_user());
 
     }
 
