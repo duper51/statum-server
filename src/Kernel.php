@@ -22,6 +22,7 @@ class Kernel
             /** @var Controller $obj */
             $class = "\\Me\\Controller\\" . $controller;
             $obj = new $class();
+            $obj->add_protected_routes($klein);
             $obj->add_routes($klein);
         }
 

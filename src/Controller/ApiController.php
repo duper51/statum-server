@@ -20,7 +20,8 @@ class ApiController extends Controller
     protected $prefix = "/api/";
     protected $routes = [
         "GET:version" => "show_version",
-        "GET:status" => "get_status"
+        "GET:status" => "get_status",
+        "GET:generate" => "generate_pass"
     ];
 
     public function show_version() {

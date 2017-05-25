@@ -10,11 +10,20 @@ namespace Me\Services;
 
 
 use Me\Exceptions\NotAuthedException;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 class AuthService
 {
     public static function is_authed($level = 0) {
-        return true; //TODO: Make this functionality actually do some validation.
+        if(isset($_SESSION['login']))
+            return true;
+
+        if(isset($_COOKIE['login_token']) && isset($_COOKIE['username'])) {
+            $collection = Capsule::table("loginTokens")->where("token", $_COOKIE['login_token'])
+                ->where("user", $_COOKIE['username'])->get(1);
+            return $collection->count() > 0;
+        }
+        return false;
     }
 
     public static function authenticate($callback, $args = null, $level = 0) {

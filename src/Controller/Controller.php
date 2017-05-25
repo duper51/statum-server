@@ -12,6 +12,7 @@ namespace Me\Controller;
 use Klein\Klein;
 use Me\Services\AuthService;
 use Me\Views\HomePage;
+use Me\Views\LoginPage;
 
 class Controller
 {
@@ -89,6 +90,11 @@ class Controller
     }
 
     public function login() {
+        $page = new LoginPage();
+        $page->execute(['warning' => 'You need to login to view this page!']);
+    }
+
+    public function process_login() {
 
     }
 }
