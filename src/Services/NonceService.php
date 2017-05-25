@@ -18,6 +18,10 @@ class NonceService
         return $_SESSION['nonce'];
     }
 
+    public static function verify_nonce($request) {
+        return $request->nonce == $_SESSION['nonce'];
+    }
+
     public static function generate_nonce($size = 32) {
         return bin2hex(openssl_random_pseudo_bytes($size));
     }
