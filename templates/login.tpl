@@ -1,5 +1,6 @@
 {extends file="general.tpl"}
 {block name=title}Statum - Login{/block}
+{block name=custom_link}<link rel="stylesheet" href="/css/footer.css">{/block}
 {block name=body}
 <div class="container">
     <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -10,8 +11,9 @@
             </div>
 
             <div style="padding-top:30px" class="panel-body">
-
-                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                {if isset($warning)}
+                    <div id="login-alert" class="alert alert-danger col-sm-12">{$warning}</div>
+                {/if}
 
                 <form id="loginform" class="form-horizontal" role="form">
 
