@@ -27,7 +27,7 @@ class AuthService
 
         if(isset($_COOKIE['login_token']) && isset($_COOKIE['username'])) {
             $collection = LoginToken::where("token", $_COOKIE['login_token'])
-                ->where("user", $_COOKIE['username'])->first();
+                ->where("username", $_COOKIE['username'])->first();
             if($collection != null) {
                 setcookie("login_token", null, 0);
                 setcookie("username", null, 0);
