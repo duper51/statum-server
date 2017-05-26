@@ -11,6 +11,7 @@ namespace Me\Services;
 
 use Me\Exceptions\NotAuthedException;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Me\Models\LoginToken;
 use Me\Models\User;
 
 class AuthService
@@ -25,7 +26,7 @@ class AuthService
         }
 
         if(isset($_COOKIE['login_token']) && isset($_COOKIE['username'])) {
-            $collection = Capsule::table("loginTokens")->where("token", $_COOKIE['login_token'])
+            $collection = LoginToken::where("token", $_COOKIE['login_token'])
                 ->where("user", $_COOKIE['username'])->first();
             if($collection != null) {
                 setcookie("login_token", null, 0);
